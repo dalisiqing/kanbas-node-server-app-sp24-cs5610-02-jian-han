@@ -1,6 +1,6 @@
 import db from "../Database/index.js";
 function AssignmentRoutes(app) {
-  app.put("/api/assignments/:mid", (req, res) => {
+  app.put("/api/assignments/:aid", (req, res) => {
     const { aid } = req.params;
     const assignmentIndex = db.assignments.findIndex((a) => a._id === aid);
     db.assignments[assignmentIndex] = {
