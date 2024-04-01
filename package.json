@@ -1,0 +1,25 @@
+{
+  "type": "module",
+  "name": "kanbas-node-server-app-sp24-cs5610-02-jian-han",
+  "version": "1.0.0",
+  "description": "Node.js HTTP Web server for the Kanbas application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node App.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dalisiqing/kanbas-node-server-app-sp24-cs5610-02-jian-han.git"
+  },
+  "author": "Jian Han",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dalisiqing/kanbas-node-server-app-sp24-cs5610-02-jian-han/issues"
+  },
+  "homepage": "https://github.com/dalisiqing/kanbas-node-server-app-sp24-cs5610-02-jian-han#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}
