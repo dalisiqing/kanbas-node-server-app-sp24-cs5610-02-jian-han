@@ -61,7 +61,7 @@ export default [
     lessons: [
       {
         _id: "L301",
-        name: "Learn the Story of Nozzle Design",
+        name: "Nozzle Design",
         description: "Overview of different types of rocket nozzles.",
         module: "M103",
       },
@@ -84,68 +84,18 @@ export default [
     name: "Fundamentals of Aerodynamics",
     description: "Basic aerodynamic concepts and fluid dynamics principles.",
     course: "RS102",
-    lessons: [
-      {
-        _id: "L121",
-        name: "History of Aerodynamic",
-        description: "Overview of aerodynamic principles.",
-        module: "M201",
-      },
-      {
-        _id: "L1211",
-        name: "Videos of Aerodynamic",
-        description: "External Link.",
-        module: "M201",
-        extlink: "#",
-      },
-    ],
   },
   {
     _id: "M202",
     name: "Subsonic and Supersonic Flow",
     description: "Understanding subsonic and supersonic aerodynamic behaviors.",
     course: "RS102",
-    lessons: [
-      {
-        _id: "L221",
-        name: "History of Subsonic Flow",
-        description: "Overview of subsonic flow.",
-        module: "M202",
-      },
-      {
-        _id: "L222",
-        name: "Supersonic Flow Overview",
-        description: "Overview of supersonic flow.",
-        module: "M202",
-      },
-      {
-        _id: "L2231",
-        name: "Videos",
-        description: "External Link.",
-        module: "M202",
-        extlink: "#",
-      },
-    ],
   },
   {
     _id: "M203",
     name: "Aerodynamic Heating",
     description: "Study of aerodynamic heating and thermal protection systems.",
     course: "RS102",
-    lessons: [
-      {
-        _id: "L321",
-        name: "History of Aerodynamic Heating",
-        description: "Overview of aerodynamic heating.",
-        module: "M203",
-      },
-      {
-        _id: "L322",
-        name: "Videos",
-        description: "Overview of thermal protection systems.",
-        module: "M203",
-      },
-    ],
   },
   {
     _id: "M301",
@@ -153,61 +103,17 @@ export default [
     description:
       "Fundamentals of designing spacecraft structures and materials selection.",
     course: "RS103",
-    lessons: [
-      {
-        _id: "L131",
-        name: "Spacecraft Structural Design Overview",
-        description: "Overview of typical spacecraft structures.",
-        module: "M301",
-      },
-      {
-        _id: "L1311",
-        name: "History of Spacecraft Design",
-        description: "External Link.",
-        module: "M301",
-        extlink: "#",
-      },
-    ],
   },
   {
     _id: "M302",
     name: "Orbital Mechanics",
     description: "Understanding orbital dynamics and mission planning.",
     course: "RS103",
-    lessons: [
-      {
-        _id: "L231",
-        name: "History of Orbital Physics",
-        description: "Physics involved with orbital dynamics.",
-        module: "M302",
-      },
-      {
-        _id: "L232",
-        name: "Videos",
-        description: "Overview of typical mission planning.",
-        module: "M302",
-      },
-    ],
   },
   {
     _id: "M303",
     name: "Spacecraft Systems Engineering",
     description: "Overview of spacecraft systems and subsystems engineering.",
     course: "RS103",
-    lessons: [
-      {
-        _id: "L331",
-        name: "History of Spacecraft Systems Engineering",
-        description: "Overview of typical spacecraft systems.",
-        module: "M303",
-      },
-      {
-        _id: "L3331",
-        name: "Videos",
-        description: "External Link.",
-        module: "M303",
-        extlink: "#",
-      },
-    ],
   },
 ];

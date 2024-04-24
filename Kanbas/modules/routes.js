@@ -1,27 +1,46 @@
-import * as dao from "./dao.js";
+import db from "../Database/index.js";
+
 export default function ModuleRoutes(app) {
-    const addModule = async (req, res) => {
-        const { cid } = req.params;
-        const module = await dao.addModule({ ...req.body, course: cid });
-        res.json(module);
+  // update
+  app.put("/api/modules/:mid", (req, res) => {
+    const { mid } = req.params;
+    const moduleIndex = db.modules.findIndex((m) => m._id === mid);
+    db.modules[moduleIndex] = {
+      ...db.modules[moduleIndex],
+      ...req.body,
     };
-    const deleteModule = async (req, res) => {
-        const status = await dao.deleteModule(req.params.mid);
-        res.json(status);
+    res.sendStatus(204);
+  });
+
+  // delete
+  app.delete("/api/modules/:mid", (req, res) => {
+    const { mid } = req.params;
+    db.modules = db.modules.filter((m) => m._id !== mid);
+    res.sendStatus(200);
+  });
+
+  // post: create
+  app.post("/api/courses/:cid/modules", (req, res) => {
+    const { cid } = req.params;
+    const newModule = {
+      ...req.body,
+      course: cid,
+      _id: new Date().getTime().toString(),
     };
-    const findModulesForCourse = async (req, res) => {
-        const { cid } = req.params;
-        const modules = await dao.findModulesForCourse(cid);
-        res.json(modules);
-        return;
-    };
-    const updateModule = async (req, res) => {
-        const { mid } = req.params;
-        const status = await dao.updateModule(mid, req.body);
-        res.json(status);
-    };
-    app.post("/api/courses/:cid/modules", addModule);
-    app.delete("/api/modules/:mid", deleteModule);
-    app.get("/api/courses/:cid/modules", findModulesForCourse);
-    app.put("/api/modules/:mid", updateModule);
+    db.modules.push(newModule);
+    res.send(newModule);
+  });
+  // get
+  app.get("/api/courses/:cid/modules", (req, res) => {
+    const { cid } = req.params;
+    const modules = db.modules.filter((m) => m.course === cid);
+    console.log(req, modules);
+    res.send(modules);
+  });
+
+  // get all courses
+  app.get("/api/modules", (req, res) => {
+    const modules = db.modules;
+    res.send(modules);
+  });
 }
