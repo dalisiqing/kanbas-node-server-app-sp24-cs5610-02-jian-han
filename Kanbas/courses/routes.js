@@ -1,13 +1,22 @@
 import Database from "../Database/index.js";
+
 export default function CourseRoutes(app) {
-  app.get("/api/courses/:id", (req, res) => {
+  app.post("/api/courses", (req, res) => {
+    const course = { ...req.body, _id: new Date().getTime().toString() };
+    Database.courses.push(course);
+    res.send(Database.courses);
+  });
+
+  app.get("/api/courses", (req, res) => {
+    const courses = Database.courses;
+    res.send(courses);
+  });
+
+  app.delete("/api/courses/:id", (req, res) => {
     const { id } = req.params;
-    const course = Database.courses.find((c) => c._id === id);
-    if (!course) {
-      res.status(404).send("Course not found");
-      return;
-    }
-    res.send(course);
+    Database.courses = Database.courses.filter((c) => c._id !== id);
+    res.send(Database.courses);
+    // res.sendStatus(204);
   });
 
   app.put("/api/courses/:id", (req, res) => {
@@ -16,26 +25,17 @@ export default function CourseRoutes(app) {
     Database.courses = Database.courses.map((c) =>
       c._id === id ? { ...c, ...course } : c
     );
-    res.sendStatus(204);
+    res.send(Database.courses);
+    // res.sendStatus(204);
   });
 
-  app.delete("/api/courses/:id", (req, res) => {
+  app.get("/api/courses/:id", (req, res) => {
     const { id } = req.params;
-    Database.courses = Database.courses.filter((c) => c._id !== id);
-    res.sendStatus(204);
-  });
-
-  app.post("/api/courses", (req, res) => {
-    const course = {
-      ...req.body,
-      _id: new Date().getTime().toString(),
-    };
-    Database.courses.push(course);
+    const course = Database.courses.find((c) => c._id === id);
+    if (!course) {
+      res.status(404).send("Course not found");
+      return;
+    }
     res.send(course);
-  });
-
-  app.get("/api/courses", (req, res) => {
-    const courses = Database.courses;
-    res.send(courses);
   });
 }
