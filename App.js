@@ -10,14 +10,19 @@ import UserRoutes from "./Users/routes.js";
 import mongoose from "mongoose";
 import "dotenv/config";
 import session from "express-session";
-// const CONNECTION_STRING =
-// process.env.DB_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kanbas";
-// mongoose.connect("mongodb://127.0.0.1:27017/kanbas");
-const mongoURI = process.env.MONGODB_URI;
-mongoose.connect(mongoURI);
+const CONNECTION_STRING =
+  process.env.DB_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kanbas";
+mongoose.connect(CONNECTION_STRING);
+// const mongoURI = process.env.MONGODB_URI;
+// mongoose.connect(mongoURI);
 
 const app = express();
-app.use(cors({ credentials: true, origin: process.env.FRONTEND_URL }));
+app.use(
+  cors({
+    credentials: true,
+    origin: [process.env.FRONTEND_URL, HTTP_SERVER_DOMAIN],
+  })
+);
 const sessionOptions = {
   secret: process.env.SESSION_SECRET,
   resave: false,
@@ -43,3 +48,18 @@ UserRoutes(app);
 app.listen(process.env.PORT || 4000, function () {
   console.log("Express server listening on port 4000");
 });
+
+const db = mongoose.connection;
+db.on("connected", () => {
+  console.log("Connected to MongoDB");
+});
+
+db.on("error", (error) => {
+  console.error("MongoDB connection error:", error);
+});
+
+db.on("disconnected", () => {
+  console.log("MongoDB disconnected");
+});
+
+console.log(process.env.CONNECTION_STRING);
